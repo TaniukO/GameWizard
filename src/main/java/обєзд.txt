@@ -1,0 +1,66 @@
+bool commonSectionCircle(double x1, double y1, double x2, double y2,
+	double xC, double yC, double R)
+{
+	x1 -= xC;
+	y1 -= yC;
+	x2 -= xC;
+	y2 -= yC;
+
+
+
+
+
+	double dx = x2 - x1;
+	double dy = y2 - y1;
+
+	//составляем коэффициенты квадратного уравнения на пересечение прямой и окружности.
+	//если на отрезке [0..1] есть отрицательные значения, значит отрезок пересекает окружность
+	double a = dx*dx + dy*dy;
+	double b = 2.*(x1*dx + y1*dy);
+	double c = x1*x1 + y1*y1 - R*R;
+
+	//а теперь проверяем, есть ли на отрезке [0..1] решения
+	if (-b < 0)
+		return (c < 0);
+	if (-b < (2.*a))
+		return ((4.*a*c - b*b) < 0);
+
+	return (a + b + c < 0);
+}
+
+
+
+
+
+
+Point2D commonSectionCircle(double x1, double y1, double x2, double y2,
+	double xC, double yC, double r)
+{
+	x1 -= xC;
+	y1 -= yC;
+	x2 -= xC;
+	y2 -= yC;
+
+
+r+=(37);
+
+double a=y1-y2;
+double b=x2-x1;
+double c=x1*y2-x2*y1;
+
+
+double crab=c*c - r*r*(a*a+b*b);
+
+if (crab > EPS){
+ return null;
+}
+else if (abs (crab) < EPS) {
+
+Point2D point=new Point2D(-a*c/(a*a+b*b),-b*c/(a*a+b*b));
+	
+return point;
+}
+
+
+return null;
+}
